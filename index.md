@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fotografia com IA | Marina Ferreira - MFX Creative</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* Variáveis de Cores e Estilo */
+        :root {
+            --bg-dark: #0a0a0a;
+            --bg-card: #141414;
+            --bg-card-hover: #1f1f1f;
+            --accent-orange: #FF6600;
+            --accent-hover: #ff8533;
+            --text-light: #f5f5f5;
+            --text-gray: #a3a3a3;
+            --border-color: rgba(255, 102, 0, 0.15);
+        }
+
+        /* Reset Básico */
+        * { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; margin-bottom: 1rem; font-weight: 700; }
+        p { color: var(--text-gray); margin-bottom: 1.5rem; }
+        .highlight { color: var(--accent-orange); }
+
+        /* Container padrão */
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 5rem 0;
+        }
+
+        /* Botões */
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+            background-color: var(--accent-orange); color: #fff;
+            padding: 1rem 2.2rem; border-radius: 50px;
+            text-decoration: none; font-weight: 600; font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 102, 0, 0.3);
+            border: none; cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--accent-hover);
+            box-shadow: 0 6px 20px rgba(255, 102, 0, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .btn-large { font-size: 1.25rem; padding: 1.2rem 2.8rem; width: auto; }
+
+        .btn-outline {
+            background-color: transparent; border: 2px solid var(--accent-orange);
+            box-shadow: none; padding: 0.6rem 1.8rem; font-size: 0.95rem;
+        }
+
+        .btn-outline:hover { background-color: var(--accent-orange); box-shadow: 0 4px 15px rgba(255, 102, 0, 0.3); }
+
+        /* Header / Nav */
+        header {
+            position: fixed; top: 0; width: 100%;
+            background: rgba(10, 10, 10, 0.9); backdrop-filter: blur(10px);
+            z-index: 1000; border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .navbar {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1rem 5%; max-width: 1300px; margin: 0 auto;
+        }
+
+        .logo {
+            font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 1.6rem;
+            color: var(--text-light); text-decoration: none;
+        }
+
+        /* Helper Classes */
+        .text-center { text-align: center; }
+        .section-title { font-size: 2.2rem; text-align: center; margin-bottom: 1rem; }
+        .section-subtitle { text-align: center; max-width: 700px; margin: 0 auto 4rem auto; font-size: 1.1rem; }
+
+        /* ========== Seção 1: Hero ========== */
+        .hero {
+            padding-top: 10rem; padding-bottom: 8rem;
+            display: flex; flex-direction: column; gap: 3rem; align-items: center;
+        }
+
+        .hero-text { text-align: center; }
+        .hero-text h1 { font-size: 2.8rem; line-height: 1.2; font-weight: 900; }
+        .hero-text p { font-size: 1.2rem; margin-bottom: 2.5rem; max-width: 800px; margin-left: auto; margin-right: auto;}
+
+        .hero-bullets {
+            list-style: none; margin-bottom: 3rem; text-align: left;
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px 20px;
+            max-width: 500px; margin-left: auto; margin-right: auto;
+        }
+        .hero-bullets li { font-weight: 600; font-size: 1rem; color: var(--text-light); display: flex; align-items: center; }
+        .hero-bullets i { color: var(--accent-orange); margin-right: 12px; font-size: 1.1rem; }
+
+        .hero-image { position: relative; width: 100%; max-width: 420px; }
+        .hero-image .circle-glow {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 100%; height: 100%; background: var(--accent-orange);
+            border-radius: 50%; filter: blur(90px); opacity: 0.25; z-index: -1;
+        }
+        .hero-image img { width: 100%; border-radius: 24px; display: block; box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+
+        /* ========== Seção 2: Problema ========== */
+        .problem { background-color: #0f0f0f; border-top: 1px solid rgba(255,255,255,0.03); border-bottom: 1px solid rgba(255,255,255,0.03); }
+        .problem-content { max-width: 750px; text-align: center; margin: 0 auto; }
+        .problem h2 { font-size: 2.2rem; }
+        .problem p { font-size: 1.15rem; color: var(--text-gray); }
+
+        /* ========== Seção 3: Solução (Grid de Serviços COM FOTOS 9:16) ========== */
+        .services-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+        .card {
+            background-color: var(--bg-card); border-radius: 16px;
+            border: 1px solid var(--border-color); transition: all 0.3s ease;
+            overflow: hidden; 
+            display: flex; flex-direction: column; text-align: left;
+        }
+        .card:hover { border-color: var(--accent-orange); transform: translateY(-5px); background-color: var(--bg-card-hover); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        
+        /* AQUI FOI APLICADO O 9:16 NA SEÇÃO DE SERVIÇOS */
+        .card-img { width: 100%; aspect-ratio: 9 / 16; overflow: hidden; }
+        .card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; display: block; }
+        .card:hover .card-img img { transform: scale(1.05); } 
+        
+        .card-content { padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column; }
+        .card-content h3 { font-size: 1.4rem; margin-bottom: 0.5rem; }
+        .card-content p { font-size: 0.95rem; margin-bottom: 0; color: var(--text-gray); }
+
+        /* ========== NOVA DOBRA: Antes e Depois (Transformações) ========== */
+        .transformations { background-color: #0f0f0f; }
+        .comparison-container {
+            display: grid; grid-template-columns: 1fr; gap: 2rem; margin-bottom: 4rem;
+        }
+        .comparison-item {
+            background: var(--bg-card); border-radius: 16px; border: 1px solid var(--border-color);
+            overflow: hidden; display: flex; flex-direction: column;
+        }
+        .comparison-images { display: flex; width: 100%; position: relative; }
+        
+        /* AQUI FOI APLICADO O 9:16 NO ANTES E DEPOIS */
+        .comp-img { width: 50%; position: relative; overflow: hidden; aspect-ratio: 9 / 16; }
+        .comp-img img { width: 100%; height: 100%; display: block; object-fit: cover; }
+        
+        .comp-label {
+            position: absolute; bottom: 10px; padding: 4px 12px;
+            background: rgba(0,0,0,0.7); color: #fff; font-size: 0.8rem;
+            font-weight: 600; border-radius: 4px; text-transform: uppercase;
+        }
+        .before-label { left: 10px; }
+        .after-label { right: 10px; background: rgba(255, 102, 0, 0.8); }
+        
+        .comparison-text { padding: 1.5rem; text-align: center; }
+        .comparison-text h4 { font-size: 1.2rem; margin-bottom: 0.5rem; color: var(--text-light); }
+        .comparison-text p { font-size: 0.9rem; margin-bottom: 0; color: var(--text-gray); }
+
+        /* ========== NOVA DOBRA: Galeria de Exemplos ========== */
+        .gallery-grid {
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;
+        }
+        /* AQUI FOI APLICADO O 9:16 NA GALERIA (TROQUEI DE 1/1 PARA 9/16) */
+        .gallery-item {
+            position: relative; border-radius: 12px; overflow: hidden;
+            aspect-ratio: 9 / 16; border: 1px solid var(--border-color);
+            cursor: pointer; transition: transform 0.3s ease;
+        }
+        .gallery-item:hover { transform: scale(1.03); z-index: 2; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: filter 0.3s ease; }
+        .gallery-item:hover img { filter: brightness(1.1); }
+        
+        .gallery-desc {
+            position: absolute; bottom: 0; left: 0; width: 100%;
+            padding: 15px; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            color: #fff; font-size: 0.9rem; font-weight: 600;
+        }
+
+        /* ========== Seção 4: Apresentação (SOBRE) MODIFICADA ========== */
+        .about { background-color: #0f0f0f; border-top: 1px solid rgba(255,255,255,0.03); }
+        .about-content {
+            display: flex; flex-direction: column; gap: 3rem; align-items: center;
+        }
+        .about-image { position: relative; width: 100%; max-width: 450px; }
+        
+        .about-image img {
+            width: 100%; border-radius: 20px; display: block;
+            border: 2px solid var(--border-color);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+        }
+        
+        .about-image::after {
+            content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 80%; height: 80%; background: var(--accent-orange);
+            border-radius: 50%; filter: blur(100px); opacity: 0.15; z-index: -1;
+        }
+
+        .about-text { text-align: center; }
+        .about-text h2 { color: var(--accent-orange); font-size: 2.2rem; }
+        .about-text p { font-size: 1.1rem; }
+
+        /* ========== Seção 5: Como Funciona ========== */
+        .steps { list-style: none; margin-top: 2rem; max-width: 700px; margin-left: auto; margin-right: auto; text-align: left;}
+        .steps li {
+            background-color: var(--bg-card); margin-bottom: 1.2rem; padding: 1.5rem;
+            border-radius: 12px; display: flex; align-items: center; gap: 1.2rem;
+            font-weight: 600; font-size: 1.05rem; border: 1px solid var(--border-color);
+            transition: transform 0.2s ease;
+        }
+        .steps li:hover { transform: translateX(5px); border-color: rgba(255,102,0,0.3); }
+        .steps li span {
+            background: var(--accent-orange); color: white;
+            width: 35px; height: 35px; min-width: 35px; display: flex; align-items: center; justify-content: center;
+            border-radius: 50%; font-weight: bold; font-size: 1.1rem; box-shadow: 0 2px 8px rgba(255,102,0,0.3);
+        }
+
+        /* ========== Seção 6: Quebra de Objeção ========== */
+        .guarantee-wrapper { padding: 2rem 0; }
+        .guarantee {
+            background: linear-gradient(135deg, var(--bg-card) 0%, #1a0a00 100%);
+            border: 2px solid var(--accent-orange); padding: 3.5rem 2.5rem;
+            border-radius: 20px; text-align: center; max-width: 850px; margin: 0 auto;
+            box-shadow: 0 15px 40px rgba(255, 102, 0, 0.15);
+        }
+        .guarantee h3 { font-size: 2rem; margin-bottom: 1.2rem; }
+        .guarantee p { font-size: 1.15rem; color: var(--text-light); opacity: 0.9; margin-bottom: 0; }
+
+        /* ========== Seção 7: CTA Final ========== */
+        .final-cta {
+            text-align: center; padding: 8rem 0;
+            background: radial-gradient(circle at center, rgba(255,102,0,0.12) 0%, var(--bg-dark) 65%);
+        }
+        .final-cta h2 { font-size: 3rem; line-height: 1.2; margin-bottom: 1.5rem; }
+        .final-cta p { font-size: 1.3rem; margin-bottom: 3rem; color: var(--text-gray); }
+        .subtext-cta { display: block; margin-top: 1.2rem; color: var(--text-gray); font-size: 0.95rem; font-weight: 600; }
+
+        /* ========== Seção 8: Urgência ========== */
+        .urgency {
+            background-color: var(--accent-orange); color: #000;
+            text-align: center; padding: 1.2rem; font-weight: 700; font-size: 1rem;
+            position: relative; z-index: 10; box-shadow: 0 -5px 20px rgba(0,0,0,0.2);
+        }
+
+        /* ========== Footer ========== */
+        footer {
+            text-align: center; padding: 3rem; color: var(--text-gray);
+            font-size: 0.9rem; border-top: 1px solid rgba(255,255,255,0.03);
+            background-color: #080808;
+        }
+
+        /* ========== WhatsApp Flutuante ========== */
+        .whatsapp-float {
+            position: fixed; width: 60px; height: 60px; bottom: 30px; right: 30px;
+            background-color: #25d366; color: #FFF; border-radius: 50px;
+            text-align: center; font-size: 32px; box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
+            z-index: 999; display: flex; align-items: center; justify-content: center;
+            text-decoration: none; transition: all 0.3s ease;
+        }
+        .whatsapp-float:hover { transform: scale(1.1) rotate(5deg); background-color: #22bf5b; }
+
+        /* ========== Animações (Scroll) ========== */
+        .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+        /* ==============================
+           RESPONSIVIDADE (MEDIA QUERIES)
+           ============================== */
+        
+        @media (min-width: 768px) {
+            .container { padding: 6rem 0; }
+            .section-title { font-size: 2.8rem; }
+            .hero { flex-direction: row; text-align: left; gap: 4rem; padding-top: 12rem; }
+            .hero-text { text-align: left; flex: 1; }
+            .hero-text h1 { font-size: 3.8rem; }
+            .hero-bullets { margin-left: 0; justify-content: flex-start; }
+            .hero-image { flex: 1; max-width: 480px; }
+            .problem h2 { font-size: 2.6rem; }
+            
+            /* Grid ajusta para não ficar gigante no desktop */
+            .services-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+            .comparison-container { grid-template-columns: repeat(2, 1fr); }
+            
+            .gallery-grid { grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+            .about-content { flex-direction: row; text-align: left; gap: 4rem; }
+            .about-image { flex: 1; }
+            .about-text { flex: 1.2; text-align: left;}
+            .final-cta h2 { font-size: 3.8rem; }
+        }
+
+        @media (min-width: 1024px) {
+            .navbar { padding: 1rem 2%; }
+            .services-grid { grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="navbar">
+            <a href="#" class="logo">MFX <span class="highlight">Creative</span></a>
+            <a href="https://wa.me/5534984187265?text=Oi%20Marina,%20vi%20sua%20página%20e%20quero%20saber%20mais%20sobre%20as%20fotos%20com%20IA!" target="_blank" class="btn btn-outline">Falar no WhatsApp</a>
+        </div>
+    </header>
+
+    <section class="container hero fade-in">
+        <div class="hero-text">
+            <h1>Fotos profissionais <span class="highlight">INCRÍVEIS</span><br> sem sair de casa</h1>
+            <p>Ensaios com Inteligência Artificial personalizados com o seu rosto — rápidos, acessíveis e surpreendentes.</p>
+            <ul class="hero-bullets">
+                <li><i class="fa-solid fa-check"></i> Sem estúdio</li>
+                <li><i class="fa-solid fa-check"></i> Sem deslocamento</li>
+                <li><i class="fa-solid fa-check"></i> Resultado profissional</li>
+                <li><i class="fa-solid fa-check"></i> Entrega em até 12h</li>
+            </ul>
+            <a href="https://wa.me/5534984187265?text=Oi%20Marina,%20vi%20sua%20página%20e%20quero%20minhas%20fotos%20agora!" target="_blank" class="btn btn-large btn-hero">
+                <i class="fa-brands fa-whatsapp"></i> Quero minhas fotos agora
+            </a>
+            <span class="subtext-cta">Atendimento direto comigo</span>
+        </div>
+        <div class="hero-image">
+            <div class="circle-glow"></div>
+            <img src="C:\Users\mafer\OneDrive\Documentos\assets\images\hf_20260305_194052_c094a9b4-3aef-4dd9-8b37-e10cc59bb0af.png" alt="Marina Ferreira - Fotografia IA">
+        </div>
+    </section>
+
+    <section class="problem">
+        <div class="container problem-content fade-in">
+            <h2>Você quer fotos incríveis…<br> mas sempre adia?</h2>
+            <p>Falta de tempo, custo alto, dificuldade de marcar ensaio, insegurança com poses… tudo isso faz muita gente desistir de ter fotos profissionais.</p>
+            <br>
+            <p><strong style="color: white;">Mas e se você pudesse resolver tudo isso em poucas horas — direto do seu celular?</strong></p>
+        </div>
+    </section>
+
+    <section class="container fade-in text-center">
+        <h2 class="section-title">Eu transformo suas fotos em<br> ensaios profissionais usando IA</h2>
+        <p class="section-subtitle">Com tecnologia de Inteligência Artificial e direção criativa, eu crio ensaios completos com o seu rosto em cenários incríveis — personalizados para o seu estilo e objetivo.</p>
+        
+        <div class="services-grid">
+            <div class="card">
+                <div class="card-img">
+                    <img src="C:\Users\mafer\OneDrive\Documentos\assets\images\hf_20260223_162113_4d4a3b14-ebbf-4306-a676-aa3a521dc9c4.jpeg" alt="Exemplo de Ensaio Infantil">
+                </div>
+                <div class="card-content">
+                    <h3>Aniversários infantis</h3>
+                    <p>Ensaios temáticos mágicos e divertidos para os pequenos.</p>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-img">
+                    <img src="C:\Users\mafer\OneDrive\Documentos\assets\images\hf_20260216_131849_d8bd5e26-fa68-4cb7-95e1-bcc71e66e600.png" alt="Exemplo de Ensaio Adulto">
+                </div>
+                <div class="card-content">
+                    <h3>Aniversários adultos</h3>
+                    <p>Fotos comemorativas em cenários luxuosos ou criativos.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img">
+                    <img src="C:\Users\mafer\OneDrive\Documentos\assets\images\25809778-03b2-459e-aba7-792c5b0d0d1b.png" alt="Exemplo de Foto Profissional">
+                </div>
+                <div class="card-content">
+                    <h3>Fotos profissionais</h3>
+                    <p>Autoridade para LinkedIn, currículo e branding pessoal.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img">
+                    <img src="C:\Users\mafer\OneDrive\Documentos\assets\images\hf_20260328_134653_4864f538-4b69-4f98-b456-41b30728576b.png" alt="Exemplo de Restauração de Fotos">
+                </div>
+                <div class="card-content">
+                    <h3>Restauração</h3>
+                    <p>Traga suas fotos antigas de volta à vida com alta definição.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="transformations">
+        <div class="container fade-in">
+            <h2 class="section-title">A Mágica da <span class="highlight">IA</span> na Prática</h2>
+            <p class="section-subtitle">Veja como fotos simples de celular se transformam em produções de estúdio de alto nível mantendo a sua identidade facial.</p>
+
+            <div class="comparison-container">
+                <div class="comparison-item">
+                    <div class="comparison-images">
+                        <div class="comp-img">
+                            <img src="C:\Users\mafer\OneDrive\Documentos\assets\images\WhatsApp Image 2026-01-06 at 09.33.51.jpeg" alt="Foto antes IA profissional">
+                            <span class="comp-label before-label">Antes</span>
+                        </div>
+                        <div class="comp-img">
+                            <img src="C:\Users\mafer\OneDrive\Documentos\assets\images\ChatGPT Image 6_02_2026, 18_31_14.png" alt="Foto depois IA profissional">
+                            <span class="comp-label after-label">Depois</span>
+                        </div>
+                    </div>
+                    <div class="comparison-text">
+                        <h4>Branding Profissional</h4>
+                        <p>De uma selfie no quarto para uma foto corporativa em escritório de luxo.</p>
+                    </div>
+                </div>
+
+                <div class="comparison-item">
+                    <div class="comparison-images">
+                        <div class="comp-img">
+                            <img src="C:\Users\mafer\OneDrive\Documentos\assets\images\WhatsApp Image 2026-02-25 at 11.29.25.jpeg" alt="Foto antes IA infantil">
+                            <span class="comp-label before-label">Antes</span>
+                        </div>
+                        <div class="comp-img">
+                            <img src="C:\Users\mafer\OneDrive\Documentos\assets\images\hf_20260225_133921_de5cf813-29a9-4da1-9fbc-3dfb66c0d5e5.jpeg" alt="Foto depois IA infantil">
+                            <span class="comp-label after-label">Depois</span>
+                        </div>
+                    </div>
+                    <div class="comparison-text">
+                        <h4>Ensaio Temático Infantil</h4>
+                        <p>Transformando uma foto comum em um cenário mágico de astronauta.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <a href="https://wa.me/5534984187265?text=Oi%20Marina,%20quero%20ver%20mais%20exemplos!" target="_blank" class="btn btn-outline">
+                    Ver mais transformações no WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="gallery">
+        <div class="container fade-in">
+            <h2 class="section-title">Explore as <span class="highlight">Possibilidades</span></h2>
+            <p class="section-subtitle">Não há limites para a criatividade. Veja alguns estilos e cenários que podemos criar para o seu ensaio.</p>
+
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="C:\Users\mafer\OneDrive\Documentos\assets\images\hf_20260211_210024_9b13fa86-46ad-4605-a826-61de135894a2.jpeg" alt="Exemplo Fotografia IA Profissional">
+                    <div class="gallery-desc">Cenário Corporativo Moderno</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="C:\Users\mafer\OneDrive\Documentos\assets\images\hf_20260328_111710_5382f0c3-4660-4333-9204-129ea9d5c101.png" alt="Exemplo Fotografia IA Infantil Fantasia">
+                    <div class="gallery-desc">Mundo da Fantasia (Infantil)</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="C:\Users\mafer\OneDrive\Documentos\assets\images\hf_20260213_221931_cc6157ff-0544-4710-8326-7da44aa6cbec.png" alt="Exemplo Fotografia IA Aniversário Adulto">
+                    <div class="gallery-desc">Festa Conceito Adulto</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="C:\Users\mafer\OneDrive\Documentos\assets\images\hf_20260328_134813_2b5614a5-dfec-4505-b767-dd51c6b6f08a.png" alt="Exemplo Restauração de Foto Antiga">
+                    <div class="gallery-desc">Restauração e Colorização</div>
+                </div>
+                 <div class="gallery-item">
+                    <img src="C:\Users\mafer\OneDrive\Documentos\assets\images\hf_20260328_165247_f6ac2e9d-c811-404e-bf94-8ca3cfcd4c41.png" alt="Exemplo Foto Estilo Revista de Moda">
+                    <div class="gallery-desc">Estilo Revista de Moda</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="C:\Users\mafer\OneDrive\Documentos\assets\images\hf_20260308_214032_0a2d65d6-2b15-4bff-84b6-f82fac6ff44b (1).jpeg" alt="Exemplo Foto em Cenário Épico/Natureza">
+                    <div class="gallery-desc">Cenários Épicos e Natureza</div>
+                </div>
+                 <div class="gallery-item">
+                    <img src="C:\Users\mafer\OneDrive\Documentos\assets\images\hf_20260211_210315_f079bbcc-d77a-453d-aa52-eb8b1bbf7fb8.jpeg" alt="Exemplo Foto para LinkedIn Autoridade">
+                    <div class="gallery-desc">LinkedIn e Autoridade</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="C:\Users\mafer\OneDrive\Documentos\assets\images\hf_20260209_212554_c433dea5-c1c7-40fd-a68d-cacd517e6236 (1).png" alt="Exemplo Foto Artística Criativa">
+                    <div class="gallery-desc">Ensaios Artísticos</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about">
+        <div class="container fade-in">
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="C:\Users\mafer\OneDrive\Documentos\assets\images\Workana Perfil 1.png" alt="Marina Ferreira MFX Creative - Especialista IA">
+                </div>
+                <div class="about-text">
+                    <h2>Prazer,<br>Marina Ferreira</h2>
+                    <p>Sou criadora da MFX Creative e especialista em produção visual de alta performance com Inteligência Artificial.</p>
+                    <p>Minha missão é unir a tecnologia de ponta com a direção criativa humana para transformar fotos comuns em imagens extraordinárias. Eu entrego estética profissional e impacto visual, provando que você pode ter um ensaio premium sem as barreiras tradicionais de tempo e custo.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container fade-in text-center">
+        <h2 class="section-title">Simples, rápido e sem complicação</h2>
+        <p class="section-subtitle">O processo é 100% digital e focado na sua comodidade.</p>
+        <ul class="steps">
+            <li><span>1</span> Contato: Você me chama no WhatsApp e conta sua ideia.</li>
+            <li><span>2</span> Envio: Me envia algumas fotos do seu rosto (simples, de celular).</li>
+            <li><span>3</span> Criação: Eu utilizo IA avançada para criar suas imagens em até 12h.</li>
+            <li><span>4</span> Escolha & Pago: Você recebe prévias, escolhe as que amou e faz o PIX.</li>
+            <li><span>5</span> Entrega: Recebe as fotos finais em alta resolução para download.</li>
+        </ul>
+    </section>
+
+    <section class="container guarantee-wrapper fade-in">
+        <div class="guarantee">
+            <h3>E se não ficar parecido comigo?</h3>
+            <p>Eu trabalho com tecnologia de fidelidade facial de última geração — seu rosto é mantido com alto nível de realismo.</p>
+            <br>
+            <p><strong style="color: white; font-size: 1.25rem;">E o melhor: Você só paga pelas fotos que gostar. O risco é zero.</strong></p>
+        </div>
+    </section>
+
+    <section class="final-cta fade-in">
+        <div class="container">
+            <h2>Pronta para ter<br> fotos incríveis?</h2>
+            <p>Me chama agora no WhatsApp e vamos criar o seu ensaio inesquecível ainda hoje.</p>
+            <a href="https://wa.me/5534984187265?text=Oi%20Marina,%20quero%20minhas%20fotos%20agora!" target="_blank" class="btn btn-large">
+                👉 Falar com Marina no WhatsApp
+            </a>
+            <span class="subtext-cta">Resposta rápida | Atendimento direto</span>
+        </div>
+    </section>
+
+    <section class="urgency">
+        ⚠️ ATENÇÃO: Atendo um número limitado de pedidos por dia para garantir qualidade máxima. Se você quer suas fotos ainda hoje, me chama agora.
+    </section>
+
+    <footer>
+        <p>MFX <span class="highlight">Creative</span> &copy; 2023 - Marina Ferreira. Todos os direitos reservados.</p>
+        <p style="font-size: 0.8rem; margin-top: 10px; opacity: 0.5;">CNPJ: 00.000.000/0001-00</p>
+    </footer>
+
+    <a href="https://wa.me/5534984187265?text=Oi%20Marina,%20vi%20sua%20página%20e%20quero%20minhas%20fotos!" target="_blank" class="whatsapp-float">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const faders = document.querySelectorAll('.fade-in');
+            
+            const appearOptions = {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) return;
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                });
+            }, appearOptions);
+
+            faders.forEach(fader => {
+                appearOnScroll.observe(fader);
+            });
+        });
+    </script>
+</body>
+</html>
