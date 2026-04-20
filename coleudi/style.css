@@ -224,7 +224,7 @@ section {
   overflow: hidden;
 }
 
-.slide {
+{
   position: absolute;
   inset: 0;
   display: flex;
