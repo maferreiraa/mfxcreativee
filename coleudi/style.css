@@ -890,6 +890,13 @@ section {
     background-image: url("Assets/Volei Parque do Sabiá (1920 x 1080 px) (1).png");
   }
 
+  @media (max-width: 767px) {
+  /* ... seus outros códigos mobile que já estão aí ... */
+
+  .slide-institucional {
+    background-image: url("Assets/Institucional CoLeUdi Mobile.png"); 
+  }
+}
   .timeline-grid::before {
     left: 50%;
     transform: translateX(-50%);
