@@ -903,6 +903,27 @@ section {
   margin-bottom: 14px;
 }
 
+/* ESTILO DOS CRÉDITOS NO RODAPÉ */
+.rodape-creditos {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1); /* Linha sutil separadora */
+  text-align: center;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.rodape-creditos a {
+  color: var(--rosa-claro); /* Usa o rosa claro do seu projeto */
+  font-weight: 700;
+  transition: color 0.2s ease;
+}
+
+.rodape-creditos a:hover {
+  color: var(--branco);
+  text-decoration: underline;
+}
+
 /* RESPONSIVO */
 @media (min-width: 768px) {
   .slide-saca-essa {
@@ -1059,23 +1080,4 @@ section {
 }
 
 
-/* ESTILO DOS CRÉDITOS NO RODAPÉ */
-.rodape-creditos {
-  margin-top: 40px;
-  padding-top: 20px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1); /* Linha sutil separadora */
-  text-align: center;
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.6);
-}
 
-.rodape-creditos a {
-  color: var(--rosa-claro); /* Usa o rosa claro do seu projeto */
-  font-weight: 700;
-  transition: color 0.2s ease;
-}
-
-.rodape-creditos a:hover {
-  color: var(--branco);
-  text-decoration: underline;
-}
