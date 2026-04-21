@@ -933,7 +933,7 @@ section {
  @media (max-width: 767px) {
   .slide-institucional {
     /* O !important garante que o celular vai ignorar a imagem do desktop */
-    background-image: url("Assets/institucional-coleudi-mobile.png") !important; 
+    background-image: url("Assets/institucional-coleudi-mobile.jpg") !important; 
     
     /* Centraliza pelo topo, evitando cortar a cabeça da imagem */
     background-position: center top !important; 
