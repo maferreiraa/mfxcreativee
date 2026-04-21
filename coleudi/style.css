@@ -549,33 +549,60 @@ section {
   background: var(--cinza-papel);
 }
 
-.grid-objetivos {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
-}
-
-.card-objetivo {
+/* WRAPPER DO CARROSSEL */
+.carrossel-wrapper {
   position: relative;
-  background: #fff;
-  border: 1px solid var(--borda);
-  border-radius: 18px;
-  padding: 32px 26px;
-  box-shadow: var(--sombra);
-  transition: transform 0.24s ease, box-shadow 0.24s ease;
+  display: flex;
+  align-items: center;
 }
 
-.card-objetivo:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 22px 44px rgba(0, 0, 0, 0.1);
+/* O SLIDER EM SI */
+.slider-objetivos {
+  display: flex;
+  gap: 22px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding: 10px 0 30px; /* Espaço para a sombra do card não cortar */
+  scrollbar-width: none; /* Esconde barra no Firefox */
 }
 
-.card-objetivo h3 {
-  font-family: var(--fonte-zine);
-  color: var(--roxo);
-  font-size: 1.4rem;
-  margin-bottom: 12px;
+.slider-objetivos::-webkit-scrollbar {
+  display: none; /* Esconde barra no Chrome/Safari */
 }
+
+/* MOSTRAR 2 CARDS POR VEZ */
+.slider-objetivos .card-objetivo {
+  flex: 0 0 calc(50% - 11px); /* Exatamente 2 colunas subtraindo o gap */
+  scroll-snap-align: start;
+}
+
+/* BOTÕES DE NAVEGAÇÃO */
+.btn-nav {
+  position: absolute;
+  z-index: 10;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--roxo);
+  color: var(--branco);
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  transition: background 0.2s, transform 0.2s;
+}
+
+.btn-nav:hover {
+  background: var(--roxo-escuro);
+  transform: scale(1.05);
+}
+
+.btn-nav.prev { left: -22px; }
+.btn-nav.next { right: -22px; }
 
 /* TIMELINE */
 .secao-timeline {
@@ -952,6 +979,12 @@ section {
     padding: 14px 16px 18px;
   }
 
+.slider-objetivos .card-objetivo {
+    flex: 0 0 100%; /* No mobile, 1 card preenche tudo */
+  }
+  .btn-nav.prev { left: -10px; }
+  .btn-nav.next { right: -10px; }
+  
   .nav-links.open {
     display: flex;
   }
