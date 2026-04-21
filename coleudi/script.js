@@ -99,3 +99,19 @@ if (menuToggle && navLinks) {
     });
   });
 }
+
+// Slider dos Objetivos
+const sliderObjetivos = document.getElementById('slider-objetivos');
+const btnPrev = document.getElementById('btn-prev');
+const btnNext = document.getElementById('btn-next');
+
+if (sliderObjetivos && btnPrev && btnNext) {
+  btnNext.addEventListener('click', () => {
+    // Rola exatamente a largura de 2 cards visíveis
+    sliderObjetivos.scrollBy({ left: sliderObjetivos.clientWidth, behavior: 'smooth' });
+  });
+
+  btnPrev.addEventListener('click', () => {
+    sliderObjetivos.scrollBy({ left: -sliderObjetivos.clientWidth, behavior: 'smooth' });
+  });
+}
