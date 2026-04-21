@@ -939,7 +939,7 @@ section {
     background-position: center top !important; 
     
     /* Se a logo ainda estiver cortando, troque "cover" por "contain" abaixo */
-    background-size: cover !important; 
+    background-size: contain !important; 
   }
 }
   .timeline-grid::before {
