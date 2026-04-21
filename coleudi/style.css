@@ -409,14 +409,6 @@ section {
   transform: scale(1.12);
 }
 
-@media (max-width: 767px) {
-  /* ... seus outros códigos mobile que já estão aí ... */
-
-  .slide-institucional {
-    background-image: url"Assets/Institucional CoLeUdi Mobile.png"; 
-  }
-}
-
 /* ENTENDA */
 .secao-entenda {
   padding: 88px 0;
