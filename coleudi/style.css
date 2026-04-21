@@ -932,7 +932,7 @@ section {
 
  @media (max-width: 767px) {
   .slide-institucional {
-    background-image: url("Assets/institucional-coleudi-mobile.jpg") !important;
+    background-image: url("Assets/institucional-coleudi-mobile.png") !important;
     background-position: center center !important;
     background-size: cover !important;
   }
