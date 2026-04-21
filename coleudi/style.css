@@ -173,8 +173,9 @@ section {
 }
 
 .logo-nav-img {
-  height: 75px;
-  width: auto;
+  height: 75px !important;
+  width: auto !important;
+  display: block !important;
   object-fit: contain;
 }
 
@@ -234,7 +235,7 @@ section {
   padding: 36px 20px;
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: cover; /* <-- A mágica acontece aqui */
+  background-size: cover;
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.7s ease, visibility 0.7s ease;
@@ -549,35 +550,31 @@ section {
   background: var(--cinza-papel);
 }
 
-/* WRAPPER DO CARROSSEL */
 .carrossel-wrapper {
   position: relative;
   display: flex;
   align-items: center;
 }
 
-/* O SLIDER EM SI */
 .slider-objetivos {
   display: flex;
   gap: 22px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
-  padding: 10px 0 30px; /* Espaço para a sombra do card não cortar */
-  scrollbar-width: none; /* Esconde barra no Firefox */
+  padding: 10px 0 30px;
+  scrollbar-width: none;
 }
 
 .slider-objetivos::-webkit-scrollbar {
-  display: none; /* Esconde barra no Chrome/Safari */
+  display: none;
 }
 
-/* MOSTRAR 2 CARDS POR VEZ */
 .slider-objetivos .card-objetivo {
-  flex: 0 0 calc(50% - 11px); /* Exatamente 2 colunas subtraindo o gap */
+  flex: 0 0 calc(50% - 11px);
   scroll-snap-align: start;
 }
 
-/* BOTÕES DE NAVEGAÇÃO */
 .btn-nav {
   position: absolute;
   z-index: 10;
@@ -898,24 +895,32 @@ section {
 }
 
 .logo-footer {
-  height: 115px;
-  width: auto;
-  margin-bottom: 14px;
+  height: 100px !important;
+  width: auto !important;
+  margin-bottom: 15px !important;
+  display: block !important;
 }
 
-/* ESTILO DOS CRÉDITOS NO RODAPÉ */
 .rodape-creditos {
+  width: 100% !important;
   margin-top: 40px;
-  padding-top: 20px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1); /* Linha sutil separadora */
-  text-align: center;
-  font-size: 0.85rem;
+  padding: 20px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center !important;
+  clear: both;
+}
+
+.rodape-creditos p {
+  margin: 0 auto;
+  display: inline-block;
   color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9rem;
 }
 
 .rodape-creditos a {
-  color: var(--rosa-claro); /* Usa o rosa claro do seu projeto */
-  font-weight: 700;
+  color: #f7d7e3;
+  font-weight: 800;
+  text-decoration: none;
   transition: color 0.2s ease;
 }
 
@@ -924,48 +929,18 @@ section {
   text-decoration: underline;
 }
 
-/* RESPONSIVO */
+/* =========================================
+   RESPONSIVO E MEDIA QUERIES 
+   ========================================= */
+
+/* Desktop Banners */
 @media (min-width: 768px) {
   .slide-saca-essa {
     background-image: url("Assets/Volei Parque do Sabiá (1920 x 1080 px) (1).png");
   }
+} /* <-- A CHAVE ESQUECIDA FOI FECHADA AQUI */
 
- @media (max-width: 767px) {
-  .slide-institucional {
-    background-image: url("Assets/institucional-coleudi-mobile.png") !important;
-    background-position: center center !important;
-    background-size: cover !important;
-  }
-  .timeline-grid::before {
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-  .timeline-card {
-    width: calc(50% - 34px);
-    margin-left: 0;
-    padding: 28px 24px 24px;
-  }
-
-  .timeline-card:nth-child(odd) {
-    justify-self: start;
-  }
-
-  .timeline-card:nth-child(even) {
-    justify-self: end;
-  }
-
-  .timeline-card::before {
-    left: auto;
-    right: -43px;
-  }
-
-  .timeline-card:nth-child(even)::before {
-    left: -43px;
-    right: auto;
-  }
-}
-
+/* Tablets */
 @media (max-width: 991px) {
   .historia-layout,
   .grid-objetivos,
@@ -980,7 +955,17 @@ section {
   }
 }
 
+/* Celulares (Mobile) - Bloco Consolidado */
 @media (max-width: 767px) {
+  
+  /* Forçando a Imagem Mobile do Banner */
+  .slide-institucional {
+    background-image: url("Assets/institucional-coleudi-mobile.png") !important;
+    background-position: center center !important;
+    background-size: cover !important;
+  }
+
+  /* Menu Mobile */
   .menu-toggle {
     display: block;
   }
@@ -999,16 +984,11 @@ section {
     padding: 14px 16px 18px;
   }
 
-.slider-objetivos .card-objetivo {
-    flex: 0 0 100%; /* No mobile, 1 card preenche tudo */
-  }
-  .btn-nav.prev { left: -10px; }
-  .btn-nav.next { right: -10px; }
-  
   .nav-links.open {
     display: flex;
   }
 
+  /* Ajustes Hero */
   .hero-slider {
     min-height: 76vh;
   }
@@ -1039,6 +1019,7 @@ section {
     text-align: center;
   }
 
+  /* Transformando Grids em 1 Coluna */
   .historia-layout,
   .grid-objetivos,
   .grid-eventos,
@@ -1047,11 +1028,13 @@ section {
     grid-template-columns: 1fr;
   }
 
+  /* Entenda */
   .dicionario-box {
     padding: 34px 22px;
     box-shadow: 10px 10px 0 var(--azul-claro);
   }
 
+  /* História Visual */
   .historia-visual {
     min-height: auto;
     display: grid;
@@ -1076,7 +1059,42 @@ section {
     max-width: 100%;
     margin-top: 8px;
   }
+
+  /* Slider Objetivos Mobile */
+  .slider-objetivos .card-objetivo {
+    flex: 0 0 100%; 
+  }
+  
+  .btn-nav.prev { left: -10px; }
+  .btn-nav.next { right: -10px; }
+
+  /* Ajustes Linha do Tempo Mobile */
+  .timeline-grid::before {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .timeline-card {
+    width: calc(50% - 34px);
+    margin-left: 0;
+    padding: 28px 24px 24px;
+  }
+
+  .timeline-card:nth-child(odd) {
+    justify-self: start;
+  }
+
+  .timeline-card:nth-child(even) {
+    justify-self: end;
+  }
+
+  .timeline-card::before {
+    left: auto;
+    right: -43px;
+  }
+
+  .timeline-card:nth-child(even)::before {
+    left: -43px;
+    right: auto;
+  }
 }
-
-
-
