@@ -173,7 +173,7 @@ section {
 }
 
 .logo-nav-img {
-  height: 42px;
+  height: 60px;
   width: auto;
   object-fit: contain;
 }
@@ -898,7 +898,7 @@ section {
 }
 
 .logo-footer {
-  height: 52px;
+  height: 85px;
   width: auto;
   margin-bottom: 14px;
 }
