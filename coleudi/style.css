@@ -936,7 +936,6 @@ section {
     background-position: center center !important;
     background-size: cover !important;
   }
-}
   .timeline-grid::before {
     left: 50%;
     transform: translateX(-50%);
