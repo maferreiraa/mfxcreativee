@@ -930,7 +930,10 @@ h2 span {
     display: none;
   }
 
-  .hero-grid,
+  .hero-grid {
+     grid-template-columns: 1.2fr 0.8fr;
+  }
+   
   .image-break-grid,
   .portfolio-grid,
   .offer-box,
