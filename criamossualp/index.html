@@ -30,14 +30,15 @@
 
 <body>
 
-  <!-- TOPO COM MENU ONE-PAGE E SANDUÍCHE -->
+  <!-- TOPO COM MENU ONE-PAGE E SANDUÍCHE FUNCIONAL -->
   <header class="topbar">
     <div class="container nav-container">
       <a href="#inicio" class="brand" aria-label="MFX Creativee">
+        <!-- Logo dimensionada para maior autoridade -->
         <img src="Assets/mfx-logo-camaleao.png" alt="MFX Creativee" class="brand-logo">
       </a>
 
-      <!-- Botão Menu Sanduíche (Mobile) -->
+      <!-- Botão Menu Sanduíche (Apenas Mobile) -->
       <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menu">
         <span class="hamburger"></span>
       </button>
@@ -47,11 +48,14 @@
         <a href="#inicio" class="nav-item">Início</a>
         <a href="#beneficios" class="nav-item">Como Funciona</a>
         <a href="#oferta" class="nav-item">Oferta</a>
-        <a href="#depoimentos" class="nav-item">Depoimentos</a>
+        <a href="#faq" class="nav-item">Dúvidas</a>
         <a href="https://wa.me/SEUNUMERO" target="_blank" class="nav-cta-btn">Falar no WhatsApp</a>
       </nav>
     </div>
   </header>
+
+  <!-- Overlay para fechar o menu ao clicar fora -->
+  <div class="menu-overlay" id="menu-overlay"></div>
 
   <!-- 1. HERO (HEADLINE + BOTÃO) -->
   <main id="inicio" class="hero section">
@@ -61,7 +65,7 @@
         <h1>Sua oferta merece uma página que faça o cliente pensar: <span>“eu PRECISO disso.”</span></h1>
         <p class="subtitle">Criamos landing pages estratégicas para explicar sua oferta, gerar confiança e levar o cliente direto para o WhatsApp.</p>
         
-        <a href="#oferta" class="cta wpp-btn">Quero uma página assim 🚀</a>
+        <a href="https://wa.me/SEUNUMERO" target="_blank" class="cta wpp-btn">Quero uma página assim 🚀</a>
         <p class="cta-note">Resposta rápida no WhatsApp</p>
       </div>
     </div>
@@ -86,21 +90,21 @@
         <article class="feature-card">
           <div class="icon">01</div>
           <h3>Headline forte</h3>
-          <p>Mostra valor imediatamente e prende a atenção.</p>
+          <p>Mostra valor imediatamente e prende a atenção antes do primeiro scroll.</p>
         </article>
         <article class="feature-card">
           <div class="icon">02</div>
           <h3>Oferta clara</h3>
-          <p>Explica o que você vende e por que resolve o problema.</p>
+          <p>Explica o que você vende, para quem é, e por que resolve o problema.</p>
         </article>
         <article class="feature-card">
           <div class="icon">03</div>
           <h3>CTA WhatsApp</h3>
-          <p>Botões focados em levar o cliente direto para a conversa.</p>
+          <p>Botões repetidos e focados em levar o cliente direto para a sua conversa.</p>
         </article>
       </div>
       <div class="center-action text-center">
-        <a href="#oferta" class="cta wpp-btn">Chamar no WhatsApp 🚀</a>
+        <a href="https://wa.me/SEUNUMERO" target="_blank" class="cta wpp-btn">Chamar no WhatsApp 🚀</a>
       </div>
     </div>
   </section>
@@ -112,7 +116,7 @@
         <div class="eyebrow">Condição de lançamento</div>
         <h2>Sua landing page profissional a partir de</h2>
         <div class="price">R$350</div>
-        <p>Design responsivo, copy estratégica e foco total em cliques no seu WhatsApp.</p>
+        <p>Design responsivo, copy estratégica e foco total em cliques no seu WhatsApp. Sem taxas mensais escondidas pela página.</p>
         <a href="https://wa.me/SEUNUMERO" target="_blank" class="cta wpp-btn">Garantir esse valor agora 🚀</a>
         <p class="cta-note">Hoje ainda consigo pegar projetos com esse valor.</p>
       </div>
@@ -136,7 +140,7 @@
   <section id="depoimentos" class="proof-section section light-section">
     <div class="container">
       <div class="section-heading text-center">
-        <h2>Mais clareza, menos esforço para explicar tudo no WhatsApp.</h2>
+        <h2>Mais clareza, menos esforço para explicar tudo.</h2>
       </div>
       <div class="proof-grid">
         <article class="testimonial">
@@ -151,12 +155,68 @@
     </div>
   </section>
 
-  <!-- 7. CTA FINAL -->
-  <section class="final-section section">
+  <!-- 7. FAQ (NOVO: Quebra de Objeções) -->
+  <section id="faq" class="faq-section section">
+    <div class="container">
+      <div class="section-heading text-center">
+        <div class="eyebrow">Ainda com dúvidas?</div>
+        <h2>Perguntas Frequentes</h2>
+      </div>
+      
+      <div class="faq-container">
+        <!-- Pergunta 1 -->
+        <div class="faq-item">
+          <button class="faq-question">
+            Tem alguma mensalidade?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Não cobramos mensalidade pelo desenvolvimento da página. Você paga apenas o valor do projeto. Custos de hospedagem e domínio são anuais e pagos diretamente às plataformas (como Hostinger/Registro.br), mas nós te orientamos em tudo.</p>
+          </div>
+        </div>
+
+        <!-- Pergunta 2 -->
+        <div class="faq-item">
+          <button class="faq-question">
+            Funciona para o meu nicho?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Sim! Nossa estrutura é validada para prestadores de serviços, produtos físicos, corretores, infoprodutos e negócios locais. O design é adaptado para transmitir a essência da sua marca e focar na clareza da sua oferta.</p>
+          </div>
+        </div>
+
+        <!-- Pergunta 3 -->
+        <div class="faq-item">
+          <button class="faq-question">
+            Como os clientes chegam no meu WhatsApp?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Configuramos links inteligentes nos botões da página. Quando o cliente clica, ele é redirecionado para o seu WhatsApp já com uma mensagem padrão escrita (ex: "Vim pela página e quero saber mais"), facilitando o início da conversa.</p>
+          </div>
+        </div>
+
+        <!-- Pergunta 4 -->
+        <div class="faq-item">
+          <button class="faq-question">
+            Qual o prazo de entrega?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>O prazo estimado é de 72h úteis após você nos enviar as informações necessárias (textos base, fotos, etc). Somos rápidos para que você comece a vender o quanto antes.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. CTA FINAL -->
+  <section class="final-section section light-section">
     <div class="container text-center">
       <h2>Quer uma página com essa presença para vender seu produto?</h2>
-      <p class="subtitle">Me chama no WhatsApp e vamos transformar sua oferta.</p>
-      <a href="https://wa.me/SEUNUMERO" target="_blank" class="cta wpp-btn pulse-glow">Quero uma página assim 🚀</a>
+      <p class="subtitle">Me chama no WhatsApp e vamos transformar a sua oferta em cliques.</p>
+      <a href="https://wa.me/SEUNUMERO" target="_blank" class="cta wpp-btn">Quero uma página assim 🚀</a>
     </div>
   </section>
 
@@ -174,27 +234,7 @@
     </svg>
   </a>
 
-  <!-- SCRIPT DO MENU SANDUÍCHE -->
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const menuToggle = document.getElementById('menu-toggle');
-      const navLinks = document.getElementById('nav-links');
-      const navItems = document.querySelectorAll('.nav-item');
-
-      // Abre/Fecha o menu ao clicar no botão hamburger
-      menuToggle.addEventListener('click', () => {
-        menuToggle.classList.toggle('active');
-        navLinks.classList.toggle('active');
-      });
-
-      // Fecha o menu automaticamente quando um link é clicado (Comportamento Onepage)
-      navItems.forEach(item => {
-        item.addEventListener('click', () => {
-          menuToggle.classList.remove('active');
-          navLinks.classList.remove('active');
-        });
-      });
-    });
-  </script>
+  <!-- SCRIPT -->
+  <script src="script.js"></script>
 </body>
 </html>
