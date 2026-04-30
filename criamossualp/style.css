@@ -1,19 +1,18 @@
 /* =========================================================
-   MFX Creativee — CSS Mobile-First focado em Conversão
+   MFX Creativee — CSS Mobile-First (Sem falhas no Header)
 ========================================================= */
 
 :root {
-  --bg-black: #030608; /*[cite: 2] */
-  --bg-dark: #07141c; /*[cite: 2] */
-  --orange: #f47c2c; /*[cite: 2] */
-  --orange-light: #ffad45; /*[cite: 2] */
-  --cream: #f7efe7; /*[cite: 2] */
-  --white: #ffffff; /*[cite: 2] */
-  --muted: #c8d0d5; /*[cite: 2] */
-  --border: rgba(255, 255, 255, 0.12); /*[cite: 2] */
+  --bg-black: #030608;
+  --bg-dark: #07141c;
+  --orange: #f47c2c;
+  --orange-light: #ffad45;
+  --cream: #f7efe7;
+  --white: #ffffff;
+  --muted: #c8d0d5;
+  --border: rgba(255, 255, 255, 0.12);
 }
 
-/* RESET BASICO */
 * {
   margin: 0;
   padding: 0;
@@ -25,110 +24,141 @@ html {
 }
 
 body {
-  font-family: Arial, Helvetica, sans-serif; /*[cite: 2] */
+  font-family: Arial, Helvetica, sans-serif;
   background: var(--bg-black);
   color: var(--white);
   line-height: 1.6;
   overflow-x: hidden;
+  padding-top: 85px; /* Compensa o menu fixo */
 }
 
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
+img { max-width: 100%; height: auto; display: block; }
+a { text-decoration: none; color: inherit; }
 
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-/* LAYOUT E CONTAINERS */
-.container {
-  width: 90%;
-  max-width: 1180px; /*[cite: 2] */
-  margin: 0 auto;
-}
-
-.section {
-  padding: 60px 0; /* Espaçamento mais dinâmico no mobile */
-}
-
-.light-section {
-  background: var(--cream);
-  color: var(--bg-dark);
-}
-
-.text-center {
-  text-align: center;
-}
+.container { width: 90%; max-width: 1180px; margin: 0 auto; }
+.section { padding: 60px 0; }
+.light-section { background: var(--cream); color: var(--bg-dark); }
+.text-center { text-align: center; }
 
 /* TIPOGRAFIA */
-h1 {
-  font-size: 2.2rem;
-  line-height: 1.1;
-  margin-bottom: 16px;
-  letter-spacing: -1px;
-}
-
-h1 span, h2 span {
-  color: var(--orange); /*[cite: 2] */
-}
-
-h2 {
-  font-size: 1.8rem;
-  line-height: 1.2;
-  margin-bottom: 16px;
-}
-
-.subtitle {
-  font-size: 1.1rem;
-  color: var(--muted);
-  margin-bottom: 24px;
-}
-
-.light-section .subtitle,
-.light-section p {
-  color: #42505a;
-}
+h1 { font-size: 2.2rem; line-height: 1.1; margin-bottom: 16px; letter-spacing: -1px; }
+h1 span, h2 span { color: var(--orange); }
+h2 { font-size: 1.8rem; line-height: 1.2; margin-bottom: 16px; }
+.subtitle { font-size: 1.1rem; color: var(--muted); margin-bottom: 24px; }
+.light-section .subtitle, .light-section p { color: #42505a; }
 
 .eyebrow {
   display: inline-block;
-  background: rgba(244, 124, 44, 0.12); /*[cite: 2] */
+  background: rgba(244, 124, 44, 0.12);
   color: var(--orange-light);
   padding: 8px 16px;
-  border-radius: 999px; /*[cite: 2] */
+  border-radius: 999px;
   font-size: 12px;
   font-weight: 700;
   text-transform: uppercase;
   margin-bottom: 16px;
 }
 
-/* CABEÇALHO */
+/* =========================================================
+   CABEÇALHO FIXO E MENU SANDUÍCHE (MOBILE FIRST)
+========================================================= */
 .topbar {
-  position: sticky;
-  top: 0;
-  z-index: 50;
+  position: fixed;
+  top: 0; left: 0; width: 100%;
+  z-index: 1000;
   background: rgba(3, 6, 8, 0.95);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border);
-  padding: 12px 0;
 }
 
-.nav {
+.nav-container {
   display: flex;
-  justify-content: center; /* Centralizado no mobile */
+  align-items: center;
+  justify-content: space-between;
+  height: 85px;
 }
 
-.brand-logo {
-  height: 85px; /* Aumentado para maior imposição da marca */
-  width: auto;
+.brand-logo { height: 60px; width: auto; } /* Aumentado */
+
+/* Botão Hamburger */
+.menu-toggle {
+  display: block;
+  width: 30px; height: 24px;
+  position: relative;
+  z-index: 1002; /* Fica acima do menu aberto */
+  background: transparent;
+  border: none;
+  cursor: pointer;
 }
 
-/* BOTÕES DE CONVERSÃO (Sem 3D, com Glow no Hover) */
+.hamburger, .hamburger::before, .hamburger::after {
+  background: var(--white);
+  height: 2px; width: 100%;
+  position: absolute; left: 0;
+  transition: all 0.3s ease;
+}
+
+.hamburger { top: 50%; transform: translateY(-50%); }
+.hamburger::before { content: ''; top: -8px; }
+.hamburger::after { content: ''; top: 8px; }
+
+/* Estado Ativo do Sanduíche (X) */
+.menu-toggle.active .hamburger { background: transparent; }
+.menu-toggle.active .hamburger::before { top: 0; transform: rotate(45deg); }
+.menu-toggle.active .hamburger::after { top: 0; transform: rotate(-45deg); }
+
+/* Links do Menu Ocultos na Direita */
+.nav-links {
+  position: fixed;
+  top: 0; right: -100%;
+  width: 80%; max-width: 300px;
+  height: 100vh;
+  background: #050d12;
+  border-left: 1px solid var(--border);
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: center;
+  gap: 30px;
+  transition: right 0.4s ease;
+  z-index: 1001;
+  box-shadow: -5px 0 25px rgba(0,0,0,0.5);
+}
+
+.nav-links.active { right: 0; } /* Classe aplicada pelo JS para mostrar */
+
+.nav-item {
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: color 0.3s;
+}
+.nav-item:hover { color: var(--orange); }
+
+.nav-cta-btn {
+  background: var(--orange);
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+/* Fundo Escuro ao abrir o menu */
+.menu-overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,0.7);
+  z-index: 999;
+  opacity: 0; visibility: hidden;
+  transition: 0.3s;
+}
+.menu-overlay.active { opacity: 1; visibility: visible; }
+
+/* =========================================================
+   BOTÕES E SEÇÕES
+========================================================= */
+/* Apenas Glow, sem visual 3D forçado */
 .cta {
   display: inline-block;
-  width: 100%; /* Botão full-width no mobile */
+  width: 100%;
   text-align: center;
   background: var(--orange);
   color: var(--white);
@@ -137,349 +167,89 @@ h2 {
   font-size: 18px;
   font-weight: bold;
   text-transform: uppercase;
-  transition: box-shadow 0.3s ease, background 0.3s ease;
-  /* Sem box-shadow inicial para visual mais flat/limpo */
+  transition: all 0.3s ease;
+  border: none;
 }
 
 .cta:hover {
   background: var(--orange-light);
-  box-shadow: 0 0 25px rgba(244, 124, 44, 0.6); /* Efeito Glow apenas no hover */
-}
-
-.cta-note {
-  font-size: 12px;
-  color: var(--muted);
-  margin-top: 12px;
-  text-align: center;
-}
-
-/* HERO SECTION (Textos antes, imagem depois) */
-.hero {
-  padding-top: 40px;
-  padding-bottom: 20px;
-  text-align: center;
-}
-
-.mockup-section {
-  padding-top: 0;
-}
-
-.hero-image {
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-}
-
-/* BENEFÍCIOS */
-.feature-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  margin-bottom: 32px;
-}
-
-.feature-card {
-  background: var(--white);
-  border: 1px solid #eadbd0;
-  border-radius: 16px;
-  padding: 24px;
-  text-align: center;
-}
-
-.feature-card .icon {
-  width: 48px;
-  height: 48px;
-  background: var(--orange);
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 12px;
-  font-weight: bold;
-  margin: 0 auto 16px;
-}
-
-.center-action {
-  text-align: center;
-}
-
-/* OFERTA */
-.offer-box {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--border);
-  border-radius: 24px;
-  padding: 32px 20px;
-  text-align: center;
-}
-
-.price {
-  font-size: 3.5rem;
-  color: var(--orange);
-  font-weight: bold;
-  margin: 16px 0;
-}
-
-/* GALERIA & ANTES/DEPOIS */
-.image-wrapper {
-  border-radius: 16px;
-  overflow: hidden;
-  border: 1px solid var(--border);
-}
-
-/* PROVA SOCIAL */
-.proof-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.testimonial {
-  background: var(--white);
-  border: 1px solid #eadbd0;
-  border-radius: 16px;
-  padding: 24px;
-}
-
-.stars {
-  color: var(--orange);
-  margin-bottom: 12px;
-  font-size: 1.2rem;
-}
-
-/* RODAPÉ */
-.footer {
-  padding: 40px 0;
-  border-top: 1px solid var(--border);
-  background: var(--bg-black);
-}
-
-.footer-logo {
-  height: 100px; /* Logo gigante no rodapé para assinar a página */
-  margin: 0 auto 20px;
-}
-
-.footer p {
-  color: var(--muted);
-  font-size: 14px;
-}
-
-/* BOTÃO WHATSAPP FLUTUANTE */
-.whatsapp-float {
-  position: fixed;
-  right: 20px;
-  bottom: 20px;
-  z-index: 100;
-  width: 60px;
-  height: 60px;
-  background: var(--orange);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-  transition: transform 0.3s ease;
-}
-
-.whatsapp-float:hover {
-  transform: scale(1.1);
   box-shadow: 0 0 25px rgba(244, 124, 44, 0.6);
+  transform: translateY(-2px);
 }
+
+.cta-note { font-size: 12px; color: var(--muted); margin-top: 12px; text-align: center; }
+
+.hero { padding-top: 20px; text-align: center; }
+.hero-image { border-radius: 16px; overflow: hidden; box-shadow: 0 15px 30px rgba(0,0,0,0.4); }
+
+.feature-grid { display: flex; flex-direction: column; gap: 16px; margin-bottom: 32px; }
+.feature-card { background: var(--white); border: 1px solid #eadbd0; border-radius: 16px; padding: 24px; text-align: center; color: var(--bg-dark);}
+.feature-card .icon { width: 48px; height: 48px; background: var(--orange); color: #fff; display: flex; align-items: center; justify-content: center; border-radius: 12px; font-weight: bold; margin: 0 auto 16px; }
+
+.offer-box { background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border); border-radius: 24px; padding: 32px 20px; text-align: center; }
+.price { font-size: 3.5rem; color: var(--orange); font-weight: bold; margin: 16px 0; }
+
+.image-wrapper { border-radius: 16px; overflow: hidden; border: 1px solid var(--border); }
+.proof-grid { display: flex; flex-direction: column; gap: 16px; }
+.testimonial { background: var(--white); border: 1px solid #eadbd0; border-radius: 16px; padding: 24px; color: var(--bg-dark); }
+.stars { color: var(--orange); margin-bottom: 12px; font-size: 1.2rem; }
 
 /* =========================================================
-   MEDIA QUERIES (DESKTOP)
+   FAQ (SANFONA)
 ========================================================= */
-@media (min-width: 768px) {
-  .section {
-    padding: 96px 0;
-  }
-  
-  .nav {
-    justify-content: flex-start;
-  }
+.faq-container { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+.faq-item { background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.faq-question {
+  width: 100%; text-align: left; background: transparent; color: var(--white);
+  padding: 20px; font-size: 1.1rem; font-weight: bold; border: none;
+  display: flex; justify-content: space-between; align-items: center; cursor: pointer;
+}
+.faq-icon { color: var(--orange); font-size: 1.5rem; font-weight: normal; transition: transform 0.3s; }
+.faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; background: transparent; }
+.faq-answer p { padding: 0 20px 20px 20px; color: var(--muted); font-size: 1rem; }
 
-  h1 {
-    font-size: 4rem;
-  }
+.faq-item.active .faq-icon { transform: rotate(45deg); }
+.faq-item.active .faq-answer { max-height: 300px; } /* Ajustável dependendo do texto */
 
-  h2 {
-    font-size: 2.5rem;
-  }
-
-  /* Na versão desktop, reestruturamos Hero e Mockup para ficarem lado a lado */
-  .hero {
-    padding-bottom: 96px;
-  }
-  
-  /* Criando um grid juntando as duas primeiras seções no Desktop */
-  .hero .container {
-    display: flex;
-    align-items: center;
-    gap: 60px;
-  }
-  
-  .mockup-section {
-    display: none; /* Esconde a seção solta no desktop se integrarmos direto, ou ajustamos via grid. 
-                      Para manter o HTML simples, usaremos a abordagem de manter o design fluido. */
-  }
-
-  /* Para que a imagem fique ao lado no desktop, seria ideal elas estarem na mesma section.
-     Como dividimos em seções para garantir a ordem no mobile (Texto > Imagem), 
-     vamos ajustar as margins para aproximá-las no desktop. */
-  .hero-copy {
-    max-width: 800px;
-    margin: 0 auto;
-  }
-  
-  .cta {
-    width: auto;
-    padding: 20px 40px;
-    font-size: 20px;
-  }
-
-  .feature-grid {
-    flex-direction: row;
-    justify-content: center;
-  }
-
-  .proof-grid {
-    flex-direction: row;
-  }
-
-  .offer-box {
-    padding: 60px;
-    max-width: 700px;
-    margin: 0 auto;
-  }
-   /* =========================================================
-   CABEÇALHO & MENU SANDUÍCHE (ONE-PAGE)
+/* =========================================================
+   RODAPÉ E FLUTUANTE
 ========================================================= */
-.nav-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
+.footer { padding: 40px 0; border-top: 1px solid var(--border); background: var(--bg-black); }
+.footer-logo { height: 80px; margin: 0 auto 20px; } /* Aumentado */
+.footer p { color: var(--muted); font-size: 14px; }
 
-/* Oculta os links no mobile por padrão */
-.nav-links {
-  position: fixed;
-  top: 0;
-  right: -100%;
-  width: 280px;
-  height: 100vh;
-  background: rgba(7, 20, 28, 0.98); /* Fundo escuro premium */
-  backdrop-filter: blur(15px);
-  border-left: 1px solid var(--border);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 32px;
-  transition: right 0.4s ease-in-out;
-  z-index: 99;
+.whatsapp-float {
+  position: fixed; right: 20px; bottom: 20px; z-index: 99;
+  width: 60px; height: 60px; background: var(--orange); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: all 0.3s ease;
 }
-
-/* Classe ativada via JavaScript para abrir o menu */
-.nav-links.active {
-  right: 0;
-}
-
-.nav-item {
-  font-size: 18px;
-  color: var(--white);
-  font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  transition: color 0.3s;
-}
-
-.nav-item:hover {
-  color: var(--orange-light);
-}
-
-.nav-cta-btn {
-  background: var(--orange);
-  color: var(--white);
-  padding: 12px 24px;
-  border-radius: 8px;
-  font-weight: bold;
-  text-transform: uppercase;
-  transition: 0.3s;
-}
-
-.nav-cta-btn:hover {
-  background: var(--orange-light);
-  box-shadow: 0 0 20px rgba(244, 124, 44, 0.5); /* Efeito Glow mantido */
-}
-
-/* Botão Hamburger */
-.menu-toggle {
-  display: block;
-  width: 32px;
-  height: 24px;
-  background: transparent;
-  cursor: pointer;
-  z-index: 100;
-  position: relative;
-}
-
-.hamburger {
-  display: block;
-  width: 100%;
-  height: 2px;
-  background: var(--white);
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  transition: background 0.3s;
-}
-
-.hamburger::before,
-.hamburger::after {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 2px;
-  background: var(--white);
-  left: 0;
-  transition: transform 0.3s ease, top 0.3s ease;
-}
-
-.hamburger::before { top: -8px; }
-.hamburger::after { top: 8px; }
-
-/* Animação do Hamburger virando um "X" */
-.menu-toggle.active .hamburger { background: transparent; }
-.menu-toggle.active .hamburger::before {
-  top: 0;
-  transform: rotate(45deg);
-}
-.menu-toggle.active .hamburger::after {
-  top: 0;
-  transform: rotate(-45deg);
-}
+.whatsapp-float:hover { transform: scale(1.1); box-shadow: 0 0 25px rgba(244, 124, 44, 0.6); }
 
 /* =========================================================
    DESKTOP (Acima de 980px)
 ========================================================= */
 @media (min-width: 980px) {
-  .menu-toggle {
-    display: none; /* Esconde o botão hamburger no PC */
-  }
+  .section { padding: 96px 0; }
+  h1 { font-size: 4rem; }
+  h2 { font-size: 2.5rem; }
 
+  /* Ajustes do Header no Desktop */
+  .menu-toggle { display: none; }
   .nav-links {
-    position: static;
-    flex-direction: row;
-    height: auto;
-    width: auto;
-    background: transparent;
-    border-left: none;
-    backdrop-filter: none;
-    gap: 32px;
+    position: static; height: auto; width: auto; max-width: none;
+    background: transparent; border-left: none; box-shadow: none;
+    flex-direction: row; gap: 32px;
   }
-
-  .nav-item {
-    font-size: 14px;
-    color: var(--muted);
-  }
-}
+  .nav-item { font-size: 1rem; color: var(--muted); }
+  
+  .hero { padding-bottom: 96px; }
+  .hero .container { display: flex; align-items: center; gap: 60px; }
+  .mockup-section { display: none; } /* Oculta pois no desktop a imagem pode entrar ao lado do hero */
+  .hero-copy { max-width: 600px; text-align: left; margin: 0; }
+  .hero-copy .cta-note { text-align: left; }
+  .cta { width: auto; padding: 20px 40px; }
+  .feature-grid { flex-direction: row; justify-content: center; }
+  .proof-grid { flex-direction: row; }
+  .offer-box { padding: 60px; max-width: 700px; margin: 0 auto; }
 }
